@@ -3,4 +3,11 @@ from django.contrib import admin
 # Register your models here.
 from .models import Post
 
-admin.site.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display=['id','title','publish_date','view_count']
+    list_filter=['publish_date']
+    search_fields=['title','content']
+    date_hierarchy='publish_date'
+
+
+admin.site.register(Post,PostAdmin)
